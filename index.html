@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> <!--Defines the character encoding UTF-8 so special symbols and multiple language work properly-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Makes webpage responsive on mobile device by matching screen width and setting initial zoom level-->
+    <title>Scientific Calculator</title> <!--Title displayed on browser tab-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="Calculator">
+        <div class="header">
+            <h1>Scientific Calculator <span class="heart"></span></h1>
+            <div class="mode-row">
+                <button class="mode-btn" id="angleModeBtn" onclick="toggleAngleMode()">DEG</button>
+                <button class="mode-btn" id="invBtn" onclick="toggleInverse()">INV</button>
+                <span class="history-tag" id="historyTag">&nbsp;</span>
+            </div>
+        </div>
+
+        <div class="display-wrap">
+            <div id="expression" class="expression">&nbsp;</div>
+            <input type="text" id="display" readonly value="0">
+        </div>
+
+        <div class="buttons">
+            <!-- Row 1: scientific -->
+            <button class="fn" data-fn="sin">sin</button>
+            <button class="fn" data-fn="cos">cos</button>
+            <button class="fn" data-fn="tan">tan</button>
+            <button class="op" onclick="appendValue('(')">(</button>
+            <button class="op" onclick="appendValue(')')">)</button>
+
+            <!-- Row 2: scientific -->
+            <button class="fn" data-fn="log">log</button>
+            <button class="fn" data-fn="ln">ln</button>
+            <button class="fn" data-fn="sqrt">√</button>
+            <button class="op" onclick="appendValue('^')">x^y</button>
+            <button class="op" onclick="appendValue('!')">x!</button>
+
+            <!-- Row 3: constants & clear -->
+            <button class="constant" onclick="appendValue('π')">π</button>
+            <button class="constant" onclick="appendValue('e')">e</button>
+            <button class="util" onclick="usePercent()">%</button>
+            <button class="util clear" onclick="cleardisplay()">C</button>
+            <button class="util" onclick="backspace()">⌫</button>
+
+            <!-- Row 4: numbers -->
+            <button class="num" onclick="appendValue('7')">7</button>
+            <button class="num" onclick="appendValue('8')">8</button>
+            <button class="num" onclick="appendValue('9')">9</button>
+            <button class="op" onclick="appendValue('÷')">÷</button>
+            <button class="op" onclick="appendValue('×')">×</button>
+
+            <!-- Row 5 -->
+            <button class="num" onclick="appendValue('4')">4</button>
+            <button class="num" onclick="appendValue('5')">5</button>
+            <button class="num" onclick="appendValue('6')">6</button>
+            <button class="op" onclick="appendValue('−')">−</button>
+            <button class="op" onclick="appendValue('+')">+</button>
+
+            <!-- Row 6 -->
+            <button class="num" onclick="appendValue('1')">1</button>
+            <button class="num" onclick="appendValue('2')">2</button>
+            
+            <button class="num" onclick="appendValue('3')">3</button>
+            <button class="util" onclick="useAns()">Ans</button>
+            <button class="equal" onclick="Calculate()">=</button>
+
+            <!-- Row 7 -->
+            <button class="num zero" onclick="appendValue('0')">0</button>
+            <button class="num" onclick="appendValue('.')">.</button>
+            <button class="util" onclick="toggleSign()">+/-</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

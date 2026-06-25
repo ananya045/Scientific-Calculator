@@ -1,0 +1,307 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Quicksand:wght@500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Quicksand', sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:30px;
+
+    /* Mermaid-teal backdrop, dotted with soft confetti circles */
+    background:
+        radial-gradient(circle at 15% 20%, rgba(255,255,255,0.35) 0, transparent 6%),
+        radial-gradient(circle at 85% 15%, rgba(255,255,255,0.3) 0, transparent 5%),
+        radial-gradient(circle at 75% 80%, rgba(255,255,255,0.3) 0, transparent 6%),
+        radial-gradient(circle at 10% 85%, rgba(255,255,255,0.3) 0, transparent 5%),
+        linear-gradient(150deg, #b8f5e8 0%, #5fd9c4 45%, #1fb8a3 100%);
+}
+
+/* ===================== Calculator Shell ===================== */
+.Calculator{
+    width:380px;
+    padding:24px;
+    border-radius:36px;
+    position:relative;
+
+    background:linear-gradient(165deg, #fbfffd 0%, #e0fbf5 60%, #c5f5ea 100%);
+    border:3px solid #ffffff;
+
+    box-shadow:
+        0 18px 40px rgba(20,140,120,0.35),
+        inset 0 2px 0 rgba(255,255,255,0.9);
+
+    transition:0.35s;
+}
+
+.Calculator:hover{
+    transform:translateY(-5px) rotate(-0.3deg);
+}
+
+/* a little plastic "shine" streak across the top, like glossy toy casing */
+.Calculator::before{
+    content:"";
+    position:absolute;
+    top:10px;
+    left:18px;
+    width:55%;
+    height:18px;
+    border-radius:50%;
+    background:linear-gradient(90deg, rgba(255,255,255,0.85), rgba(255,255,255,0));
+    pointer-events:none;
+}
+
+/* ===================== Header ===================== */
+.header h1{
+    text-align:center;
+    color:#0e8c79;
+    margin-bottom:12px;
+    font-family:'Fredoka', sans-serif;
+    font-size:2rem;
+    font-weight:700;
+    letter-spacing:0.5px;
+    text-shadow:0 2px 0 rgba(255,255,255,0.6);
+}
+
+.heart{
+    display:inline-block;
+    font-size:1.4rem;
+    filter:drop-shadow(0 2px 2px rgba(0,0,0,0.1));
+}
+
+/* Mode row: DEG/RAD + INV pills */
+.mode-row{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    margin-bottom:16px;
+}
+
+.mode-btn{
+    padding:6px 16px;
+    font-family:'Fredoka', sans-serif;
+    font-size:0.75rem;
+    font-weight:600;
+    letter-spacing:0.5px;
+    border:2px solid #b8ecdf;
+    border-radius:20px;
+    background:#f0fdfa;
+    color:#3a9484;
+    cursor:pointer;
+    transition:all 0.25s ease;
+    height:auto;
+    box-shadow:0 3px 0 rgba(20,140,120,0.15);
+}
+
+.mode-btn:hover{
+    transform:translateY(-2px);
+}
+
+.mode-btn.active{
+    background:linear-gradient(135deg,#34d9c0,#0fae93);
+    color:#fff;
+    border-color:transparent;
+    box-shadow:0 4px 10px rgba(20,140,120,0.4);
+}
+
+.history-tag{
+    font-size:0.7rem;
+    color:#7fd4c4;
+    min-width:10px;
+}
+
+/* ===================== Display (LCD look) ===================== */
+.display-wrap{
+    margin-bottom:18px;
+    padding:10px 12px 12px;
+    border-radius:20px;
+    background:linear-gradient(160deg, #c9eee0, #a9d9cb);
+    box-shadow:
+        inset 0 3px 6px rgba(20,110,90,0.25),
+        0 2px 0 rgba(255,255,255,0.6);
+}
+
+.expression{
+    min-height:18px;
+    text-align:right;
+    padding:0 6px;
+    font-size:0.85rem;
+    color:#2f6b5d;
+    font-weight:600;
+    letter-spacing:0.5px;
+    overflow-x:auto;
+    white-space:nowrap;
+    font-family:'Quicksand', sans-serif;
+}
+
+#display{
+    width:100%;
+    height:62px;
+    border:none;
+    outline:none;
+    border-radius:14px;
+    margin-top:6px;
+
+    text-align:right;
+    padding:10px 14px;
+
+    font-family:'Courier New', monospace;
+    font-size:2rem;
+    font-weight:700;
+    letter-spacing:1px;
+    color:#22332f;
+
+    /* classic greenish-grey LCD glass */
+    background:linear-gradient(180deg, #d7e6cf, #c4d8bb);
+
+    box-shadow:
+        inset 0 2px 6px rgba(0,0,0,0.18),
+        inset 0 -1px 0 rgba(255,255,255,0.4);
+}
+
+/* ===================== Buttons Grid ===================== */
+.buttons{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:10px;
+}
+
+/* Common glossy plastic button */
+button{
+    height:54px;
+    border:none;
+    border-radius:18px;
+    position:relative;
+    overflow:hidden;
+
+    font-family:'Fredoka', sans-serif;
+    font-size:1rem;
+    font-weight:600;
+    cursor:pointer;
+
+    color:#1f4a40;
+
+    background:#ffffff;
+
+    box-shadow:
+        0 5px 0 rgba(20,130,110,0.25),
+        0 6px 10px rgba(20,110,90,0.18),
+        inset 0 -3px 4px rgba(0,0,0,0.05),
+        inset 0 2px 2px rgba(255,255,255,0.8);
+
+    transition:all 0.15s ease;
+}
+
+/* glossy highlight streak on every button, like real plastic keys */
+button::after{
+    content:"";
+    position:absolute;
+    top:3px;
+    left:8%;
+    width:60%;
+    height:35%;
+    border-radius:50% / 60%;
+    background:linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0));
+    pointer-events:none;
+}
+
+button:hover{
+    transform:translateY(-2px);
+    box-shadow:
+        0 7px 0 rgba(20,130,110,0.25),
+        0 10px 16px rgba(20,110,90,0.25),
+        inset 0 2px 2px rgba(255,255,255,0.8);
+}
+
+button:active{
+    transform:translateY(2px) scale(0.97);
+    box-shadow:
+        0 2px 0 rgba(20,130,110,0.25),
+        inset 0 2px 4px rgba(0,0,0,0.15);
+}
+
+/* Number buttons — soft cream/mint keys */
+.num{
+    background:linear-gradient(160deg, #f5fffb, #e5faf2);
+    color:#2c6354;
+}
+
+/* Zero spans two columns */
+.zero{
+    grid-column:span 2;
+}
+
+/* Operators (÷ × − + x^y x!) — turquoise keys */
+.op{
+    background:linear-gradient(160deg, #5fe0c8, #23c2a8);
+    color:#fff;
+}
+
+/* Scientific function keys — pastel rainbow, like the heart-shaped calculator */
+.fn{
+    color:#4a2e55;
+    font-size:0.95rem;
+}
+.fn:nth-of-type(1){ background:linear-gradient(160deg, #ffd3a6, #ffb685); } /* sin - peach */
+.fn:nth-of-type(2){ background:linear-gradient(160deg, #c9b6f5, #a98ee8); } /* cos - lavender */
+.fn:nth-of-type(3){ background:linear-gradient(160deg, #a6e1ff, #7fc8f5); } /* tan - sky blue */
+.fn:nth-of-type(4){ background:linear-gradient(160deg, #b8f0cf, #8fdfb0); } /* log - mint */
+.fn:nth-of-type(5){ background:linear-gradient(160deg, #fff3a0, #ffe27a); } /* ln - yellow */
+.fn:nth-of-type(6){ background:linear-gradient(160deg, #9be8e0, #5fd4c8); } /* sqrt - teal */
+
+/* Constants pi / e — lilac keys */
+.constant{
+    background:linear-gradient(160deg, #e3c9f7, #d3a9f0);
+    color:#4a2e55;
+    font-style:italic;
+}
+
+/* Utility buttons: %, backspace, Ans, +/- — soft seafoam keys */
+.util{
+    background:linear-gradient(160deg, #d9f5ec, #b8e8da);
+    color:#2c6354;
+    font-size:0.9rem;
+}
+
+/* Clear button — coral red */
+.clear{
+    background:linear-gradient(160deg, #ff8a8a, #ff5d6c);
+    color:#fff;
+}
+
+/* Equal Button — minty green, the "go" key */
+.equal{
+    background:linear-gradient(160deg, #7be0c4, #4fcf9f);
+    color:#fff;
+    font-size:1.4rem;
+}
+
+/* ===================== Responsive ===================== */
+@media(max-width:450px){
+
+    .Calculator{
+        width:95%;
+        padding:18px;
+    }
+
+    button{
+        height:50px;
+        font-size:0.9rem;
+    }
+
+    .equal{
+        font-size:1.2rem;
+    }
+
+    #display{
+        height:56px;
+        font-size:1.6rem;
+    }
+}
